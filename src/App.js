@@ -6,6 +6,9 @@ import { getToken } from "./helper/SessionHelper";
 import ProfilePage from './pages/Users/ProfilePage';
 import SendOTPPage from './pages/Users/SendOTPPage';
 import VerifyOTPPage from './pages/Users/VerifyOTPPage';
+import CreatePasswordPage from './pages/Users/CreatePasswordPage';
+import { Toaster } from 'react-hot-toast';
+import FullscreenLoader from './components/MasterLayout/FullscreenLoader';
 
 const App = () => {
   return (
@@ -20,6 +23,8 @@ const App = () => {
         <Route path="/createPassword" element={<CreatePasswordPage />} />
      </Routes>
      </BrowserRouter>
+     <FullscreenLoader/>
+     <Toaster/>
     </>
   )
 }
