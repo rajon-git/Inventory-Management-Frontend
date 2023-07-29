@@ -5,6 +5,7 @@ import LoginPage from './pages/Users/LoginPage'
 import { getToken } from "./helper/SessionHelper";
 import ProfilePage from './pages/Users/ProfilePage';
 import SendOTPPage from './pages/Users/SendOTPPage';
+import VerifyOTPPage from './pages/Users/VerifyOTPPage';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/sendOtp" element={<SendOTPPage />} />
+        <Route path="/verifyOtp" element={<VerifyOTPPage />} />
      </Routes>
      </BrowserRouter>
     </>
