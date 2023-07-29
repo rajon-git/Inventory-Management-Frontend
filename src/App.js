@@ -9,6 +9,7 @@ import VerifyOTPPage from './pages/Users/VerifyOTPPage';
 import CreatePasswordPage from './pages/Users/CreatePasswordPage';
 import { Toaster } from 'react-hot-toast';
 import FullscreenLoader from './components/MasterLayout/FullscreenLoader';
+import Page404 from './pages/NotFound/Page404';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/sendOtp" element={<SendOTPPage />} />
         <Route path="/verifyOtp" element={<VerifyOTPPage />} />
         <Route path="/createPassword" element={<CreatePasswordPage />} />
+        <Route path="*" element={<Page404 />} />
      </Routes>
      </BrowserRouter>
      <FullscreenLoader/>
