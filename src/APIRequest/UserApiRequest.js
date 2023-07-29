@@ -55,3 +55,32 @@ export async function RegistrationRequest(
       return false;
     }
   }
+
+  // LoginRequest
+export async function LoginRequest(UserEmail, password) {
+    try {
+      store.dispatch(ShowLoader());
+      let URL = `${BaseURL}/login`;
+  
+      let PostBody = { UserEmail, password };
+  
+      let res = await axios.post(URL, PostBody);
+  
+      if (res.data["status"] === "success") {
+        setToken(res.data["token"]);
+        setUserDetails(res.data["data"][0]);
+        SuccessToast("Login Success");
+        store.dispatch(HideLoader());
+        return true;
+      } else {
+        ErrorToast("Something Went Wrong");
+        store.dispatch(HideLoader());
+        return false;
+      }
+    } catch (e) {
+      // console.log(e)
+      store.dispatch(HideLoader());
+      ErrorToast("Invalid Email or Password");
+      return false;
+    }
+  }
