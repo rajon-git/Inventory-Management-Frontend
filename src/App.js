@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import RegistrationPage from './pages/Users/RegistrationPage'
 import LoginPage from './pages/Users/LoginPage'
 import { getToken } from "./helper/SessionHelper";
@@ -10,13 +10,14 @@ import CreatePasswordPage from './pages/Users/CreatePasswordPage';
 import { Toaster } from 'react-hot-toast';
 import FullscreenLoader from './components/MasterLayout/FullscreenLoader';
 import Page404 from './pages/NotFound/Page404';
+import DashboardPage from './pages/Dashboard/DashboardPage';
 
 const App = () => {
   return (
     <>
      <BrowserRouter>
      <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<DashboardPage/>} />
         <Route path="/registration" element={<RegistrationPage />}/>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />

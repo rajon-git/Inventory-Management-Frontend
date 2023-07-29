@@ -6,13 +6,12 @@ import {
   AiOutlineMenu,
   AiOutlineUser,
 } from "react-icons/ai";
-import {
-  AiOutlineUnorderedList,
-  IoCreateOutline,
-  RiDashboardLine,
-  TbTruckDelivery,
-  AiOutlineMenuUnfold
-} from "react-icons/all";
+import { AiOutlineUnorderedList } from 'react-icons/ai';
+import { RiDashboardLine } from 'react-icons/ri';
+import { TbTruckDelivery } from 'react-icons/tb';
+import { AiOutlineMenuUnfold } from 'react-icons/ai';
+import { IoIosAdd, IoIosAddCircle, IoIosAddCircleOutline } from 'react-icons/io';
+
 import {
   BsBagPlus,
   BsBagX,
@@ -123,7 +122,7 @@ const MasterLayout = (props) => {
         },
         {
           title: "New Expense",
-          icon: <IoCreateOutline size={16} className="side-bar-subitem-icon" />,
+          icon: <IoIosAdd  size={16} className="side-bar-subitem-icon" />,
           url: "/expenseCreateUpdate",
         },
         {
