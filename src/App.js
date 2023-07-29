@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import RegistrationPage from './pages/Users/RegistrationPage'
 import LoginPage from './pages/Users/LoginPage'
 import { getToken } from "./helper/SessionHelper";
+import ProfilePage from './pages/Users/ProfilePage';
 
 const App = () => {
   return (

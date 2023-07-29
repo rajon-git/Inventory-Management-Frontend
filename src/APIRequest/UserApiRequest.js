@@ -106,3 +106,51 @@ export async function GetProfileDetails() {
       return false;
     }
   }
+
+// ProfileUpdateRequest
+export async function ProfileUpdateRequest(
+    UserEmail,
+    firstName,
+    lastName,
+    mobile,
+    password,
+    photo
+  ) {
+    try {
+      store.dispatch(ShowLoader());
+      let URL = `${BaseURL}/profileUpdate`;
+  
+      let PostBody = {
+        UserEmail,
+        firstName,
+        lastName,
+        mobile,
+        password,
+        photo,
+      };
+  
+      let userDetails = {
+        UserEmail,
+        firstName,
+        lastName,
+        mobile,
+        photo,
+      };
+  
+      let res = await axios.post(URL, PostBody, axiosConfig);
+      store.dispatch(HideLoader());
+  
+      if (res.status === 200) {
+        SuccessToast("Profile Update Success");
+        setUserDetails(userDetails);
+        return true;
+      } else {
+        ErrorToast("Something Went Wrong");
+        return false;
+      }
+    } catch (e) {
+      store.dispatch(HideLoader());
+      ErrorToast("Something Went Wrong");
+      return false;
+    }
+  }
