@@ -216,3 +216,34 @@ export async function RecoverVerifyOTPRequest(email, otp) {
   }
 }
 
+// create a new password
+export async function RecoverResetPassRequest(email, otp, password) {
+  try {
+    store.dispatch(ShowLoader());
+    let URL = `${BaseURL}/resetPassword`;
+
+    let PostBody = { UserEmail: email, otp, password: password };
+    let res = await axios.post(URL, PostBody);
+    store.dispatch(HideLoader());
+
+    if (res.status === 201) {
+      if (res.data["status"] === "fail") {
+        ErrorToast(res.data["data"]);
+        return false;
+      } else {
+        setOtp(otp);
+        SuccessToast("New password created");
+        return true;
+      }
+    } else {
+      ErrorToast("Something Went Wrong");
+      return false;
+    }
+  } catch (e) {
+    // console.log(e);
+    store.dispatch(HideLoader());
+    ErrorToast("Something Went Wrong***");
+    return false;
+  }
+}
+
