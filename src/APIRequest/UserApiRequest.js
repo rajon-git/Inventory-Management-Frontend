@@ -84,3 +84,25 @@ export async function LoginRequest(UserEmail, password) {
       return false;
     }
   }
+
+  // GetProfileDetails
+export async function GetProfileDetails() {
+    try {
+      store.dispatch(ShowLoader());
+  
+      let URL = `${BaseURL}/profileDetails`;
+      let res = await axios.get(URL, axiosConfig);
+  
+      store.dispatch(HideLoader());
+  
+      if (res.status === 200) {
+        store.dispatch(SetProfile(res.data["data"][0]));
+      } else {
+        ErrorToast("Something Went Wrong");
+      }
+    } catch (e) {
+      store.dispatch(HideLoader());
+      ErrorToast("Something Went Wrong");
+      return false;
+    }
+  }
