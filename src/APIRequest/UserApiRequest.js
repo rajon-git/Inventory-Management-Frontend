@@ -185,3 +185,34 @@ export async function RecoverVerifyEmailRequest(UserEmail) {
       return false;
     }
   }
+
+// VerifyOTPRequest
+export async function RecoverVerifyOTPRequest(email, otp) {
+  try {
+    store.dispatch(ShowLoader());
+    let URL = `${BaseURL}/verifyOtp/${email}/${otp}`;
+
+    let res = await axios.get(URL);
+    store.dispatch(HideLoader());
+
+    if (res.status === 200) {
+      if (res.data["status"] === "fail") {
+        ErrorToast("Code Verification Fail");
+        return false;
+      } else {
+        setOtp(otp);
+        SuccessToast("Code Verification Success");
+        return true;
+      }
+    } else {
+      ErrorToast("Something Went Wrong");
+      return false;
+    }
+  } catch (e) {
+    // console.log(e);
+    store.dispatch(HideLoader());
+    ErrorToast("Something Went Wrong***");
+    return false;
+  }
+}
+
