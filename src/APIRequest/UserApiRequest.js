@@ -154,3 +154,34 @@ export async function ProfileUpdateRequest(
       return false;
     }
   }
+
+
+// RecoverVerifyEmailRequest
+export async function RecoverVerifyEmailRequest(UserEmail) {
+    try {
+      store.dispatch(ShowLoader());
+      let URL = `${BaseURL}/recoverEmail/${UserEmail}`;
+  
+      let res = await axios.get(URL);
+      store.dispatch(HideLoader());
+      // console.log(res.data)
+      if (res.status === 200) {
+        if (res.data["status"] === "fail") {
+          ErrorToast("No user found");
+          return false;
+        } else {
+          setEmail(UserEmail);
+          SuccessToast("Check your email address");
+          return true;
+        }
+      } else {
+        ErrorToast("Something Went Wrong+++");
+        return false;
+      }
+    } catch (e) {
+      // console.log(e)
+      store.dispatch(HideLoader());
+      ErrorToast("Something Went Wrong***");
+      return false;
+    }
+  }
