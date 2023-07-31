@@ -42,64 +42,38 @@ const App = () => {
       <>
       <BrowserRouter>
        <Routes>
-          <Route
-              path="/brandCreateUpdate"
-              element={<BrandCreateUpdatePage />}
-          />
+          <Route path="/brandCreateUpdate" element={<BrandCreateUpdatePage />}/>
          <Route path="/brandList" element={<BrandListPage />} />
-         <Route
-              path="/categoryCreateUpdate"
-              element={<CategoryCreateUpdatePage />}
-            />
-          <Route exact path="/categoryList" element={<CategoryListPage />} />
+         <Route path="/categoryCreateUpdate" element={<CategoryCreateUpdatePage />}/>
+        <Route exact path="/categoryList" element={<CategoryListPage />} />
          <Route path="/customerCreateUpdate" element={<CustomerCreateUpdatePage />}/>
          <Route path="/customerList" element={<CustomerListPage />} />
 
-         <Route
-              path="/expenseCreateUpdate"
-              element={<ExpenseCreateUpdatePage />}
-            />
-            <Route path="/expenseList" element={<ExpenseListPage />} />
+         <Route path="/expenseCreateUpdate" element={<ExpenseCreateUpdatePage />}/>
+         <Route path="/expenseList" element={<ExpenseListPage />} />
 
-            <Route
-              path="/expenseTypeCreateUpdate"
-              element={<ExpenseTypeCreateUpdatePage />}
-            />
-            <Route path="/expenseTypeList" element={<ExpenseTypeListPage />} />
+         <Route path="/expenseTypeCreateUpdate" element={<ExpenseTypeCreateUpdatePage />}/>
+         <Route path="/expenseTypeList" element={<ExpenseTypeListPage />} />
 
-            <Route
-              path="/productCreateUpdate"
-              element={<ProductCreateUpdatePage />}
-            />
-            <Route path="/productList" element={<ProductListPage />} />
+         <Route path="/productCreateUpdate" element={<ProductCreateUpdatePage />}/>
+         <Route path="/productList" element={<ProductListPage />} />
 
-            <Route
-              path="/purchaseCreateUpdate"
-              element={<PurchaseCreateUpdatePage />}
-            />
-            <Route path="/purchaseList" element={<PurchaseListPage />} />
+         <Route path="/purchaseCreateUpdate" element={<PurchaseCreateUpdatePage />} />
+         <Route path="/purchaseList" element={<PurchaseListPage />} />
 
-            <Route
-              path="/returnCreateUpdate"
-              element={<ReturnCreateUpdatePage />}
-            />
-            <Route path="/returnList" element={<ReturnListPage />} />
+         <Route path="/returnCreateUpdate" element={<ReturnCreateUpdatePage />}/>
+         <Route path="/returnList" element={<ReturnListPage />} />
 
-            <Route
-              path="/salesCreateUpdate"
-              element={<SalesCreateUpdatePage />}
-            />
-            <Route path="/salesList" element={<SalesListPage />} />
-         <Route
-              path="/supplierCreateUpdate"
-              element={<SupplierCreateUpdatePage />}
-            />
-          <Route path="/supplierList" element={<SupplierListPage />} />
+         <Route  path="/salesCreateUpdate" element={<SalesCreateUpdatePage />} />
+         <Route path="/salesList" element={<SalesListPage />} />
 
-          <Route path="/purchaseReport" element={<PurchaseReportPage />} />
-            <Route path="/returnReport" element={<ReturnReportPage />} />
-            <Route path="/saleReport" element={<SaleReportPage />} />
-            <Route path="/expenseReport" element={<ExpenseReportPage />} />
+         <Route path="/supplierCreateUpdate"  element={<SupplierCreateUpdatePage />} />
+         <Route path="/supplierList" element={<SupplierListPage />} />
+
+         <Route path="/purchaseReport" element={<PurchaseReportPage />} />
+         <Route path="/returnReport" element={<ReturnReportPage />} />
+         <Route path="/saleReport" element={<SaleReportPage />} />
+         <Route path="/expenseReport" element={<ExpenseReportPage />} />
       
          <Route path="/" element={<DashboardPage />} />
          <Route path="/Profile" element={<ProfilePage />} />
