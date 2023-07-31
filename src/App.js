@@ -59,6 +59,11 @@ const App = () => {
               element={<ReturnCreateUpdatePage />}
             />
             <Route path="/returnList" element={<ReturnListPage />} />
+            <Route
+              path="/salesCreateUpdate"
+              element={<SalesCreateUpdatePage />}
+            />
+            <Route path="/salesList" element={<SalesListPage />} />
          <Route
               path="/supplierCreateUpdate"
               element={<SupplierCreateUpdatePage />}
