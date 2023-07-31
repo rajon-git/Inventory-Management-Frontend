@@ -44,6 +44,11 @@ const App = () => {
               element={<ExpenseTypeCreateUpdatePage />}
             />
             <Route path="/expenseTypeList" element={<ExpenseTypeListPage />} />
+            <Route
+              path="/productCreateUpdate"
+              element={<ProductCreateUpdatePage />}
+            />
+            <Route path="/productList" element={<ProductListPage />} />
          <Route
               path="/supplierCreateUpdate"
               element={<SupplierCreateUpdatePage />}
