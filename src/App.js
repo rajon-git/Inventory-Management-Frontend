@@ -11,12 +11,32 @@ import { Toaster } from 'react-hot-toast';
 import FullscreenLoader from './components/MasterLayout/FullscreenLoader';
 import Page404 from './pages/NotFound/Page404';
 import DashboardPage from './pages/Dashboard/DashboardPage';
+import CustomerCreateUpdatePage from './pages/Customer/CustomerCreateUpdatePage';
+import CustomerListPage from './pages/Customer/CustomerListPage';
 
 const App = () => {
-  return (
-    <>
-     <BrowserRouter>
-     <Routes>
+  if (getToken()){
+    return(
+      <>
+      <BrowserRouter>
+       <Routes>
+         <Route path="/customerCreateUpdate" element={<CustomerCreateUpdatePage />}/>
+         <Route path="/customerList" element={<CustomerListPage />} />
+      
+         <Route path="/" element={<DashboardPage />} />
+         <Route path="/Profile" element={<ProfilePage />} />
+         <Route path="*" element={<Page404 />} />
+       </Routes>
+      </BrowserRouter>
+      <FullscreenLoader />
+        <Toaster />
+      </>
+    );
+    }else{
+     return(
+      <>
+      <BrowserRouter>
+       <Routes>
         <Route path="/" element={<DashboardPage/>} />
         <Route path="/registration" element={<RegistrationPage />}/>
         <Route path="/login" element={<LoginPage />} />
@@ -25,12 +45,13 @@ const App = () => {
         <Route path="/verifyOtp" element={<VerifyOTPPage />} />
         <Route path="/createPassword" element={<CreatePasswordPage />} />
         <Route path="*" element={<Page404 />} />
-     </Routes>
-     </BrowserRouter>
-     <FullscreenLoader/>
-     <Toaster/>
-    </>
-  )
+       </Routes>
+      </BrowserRouter>
+      <FullscreenLoader />
+      <Toaster />
+      </>
+    );
+  }
 }
 
 export default App
