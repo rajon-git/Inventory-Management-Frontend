@@ -13,6 +13,8 @@ import Page404 from './pages/NotFound/Page404';
 import DashboardPage from './pages/Dashboard/DashboardPage';
 import CustomerCreateUpdatePage from './pages/Customer/CustomerCreateUpdatePage';
 import CustomerListPage from './pages/Customer/CustomerListPage';
+import CategoryCreateUpdatePage from './pages/Category/CategoryCreateUpdatePage';
+import CategoryListPage from './pages/Category/CategoryListPage';
 
 const App = () => {
   if (getToken()){
@@ -32,6 +34,11 @@ const App = () => {
           <Route exact path="/categoryList" element={<CategoryListPage />} />
          <Route path="/customerCreateUpdate" element={<CustomerCreateUpdatePage />}/>
          <Route path="/customerList" element={<CustomerListPage />} />
+         <Route
+              path="/supplierCreateUpdate"
+              element={<SupplierCreateUpdatePage />}
+            />
+          <Route path="/supplierList" element={<SupplierListPage />} />
       
          <Route path="/" element={<DashboardPage />} />
          <Route path="/Profile" element={<ProfilePage />} />
