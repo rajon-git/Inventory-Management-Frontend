@@ -25,6 +25,11 @@ const App = () => {
               element={<BrandCreateUpdatePage />}
           />
          <Route path="/brandList" element={<BrandListPage />} />
+         <Route
+              path="/categoryCreateUpdate"
+              element={<CategoryCreateUpdatePage />}
+            />
+          <Route exact path="/categoryList" element={<CategoryListPage />} />
          <Route path="/customerCreateUpdate" element={<CustomerCreateUpdatePage />}/>
          <Route path="/customerList" element={<CustomerListPage />} />
       
