@@ -1,153 +1,271 @@
-import exportFromJSON from "export-from-json";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CurrencyFormat from "react-currency-format";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/all";
+import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
-import { SaleByDateRequest } from "../../APIRequest/ReportApiRequest";
-import dataFound from "../../assets/img/dat.png";
-import dataNot from "../../assets/img/dataNot.png";
-import { ErrorToast, IsEmpty } from "../../helper/FormHelper";
+import { Link } from "react-router-dom";
+import {
+  DeleteSaleRequest,
+  SaleListRequest,
+} from "../../APIRequest/SalesApiRequest";
 
-const SaleReport = () => {
-  let DataList = useSelector((state) => state.report.SalesByDateList);
-  const [date, setDate] = useState({ formDate: "", toDate: "" });
+const SalesList = () => {
+  let [searchKey, setSearchKey] = useState("0");
+  let [perPage, setPerPage] = useState(20);
 
-  const handelChange = (e) => {
-    let Name = e.target.name;
-    setDate((oldValue) => {
-      return { ...oldValue, [Name]: e.target.value };
-    });
+  useEffect(() => {
+    (async () => {
+      await SaleListRequest(1, perPage, searchKey);
+    })();
+  }, []);
+
+  let DataList = useSelector((state) => state.sale.List);
+  let Total = useSelector((state) => state.sale.ListTotal);
+
+  const handlePageClick = async (event) => {
+    await SaleListRequest(event.selected + 1, perPage, searchKey);
   };
-
-  const CreateReport = async () => {
-    if (IsEmpty(date.formDate)) {
-      ErrorToast("Form Date Required");
-    } else if (IsEmpty(date.toDate)) {
-      ErrorToast("To Date Required");
-    } else {
-      await SaleByDateRequest(date.formDate, date.toDate);
+  const searchData = async () => {
+    await SaleListRequest(1, perPage, searchKey);
+  };
+  const perPageOnChange = async (e) => {
+    setPerPage(parseInt(e.target.value));
+    await SaleListRequest(1, e.target.value, searchKey);
+  };
+  const searchKeywordOnChange = async (e) => {
+    setSearchKey(e.target.value);
+    if (e.target.value.length === 0) {
+      setSearchKey("0");
+      await SaleListRequest(1, perPage, "0");
     }
   };
 
-  const OnExport = (exportType, data) => {
-    const fileName = "SalesReport";
-    if (data.length > 0) {
-      let ReportData = [];
-      data.map((item) => {
-        let listItem = {
-          Product: item["products"]["Name"],
-          Unit: item["products"]["Unit"],
-          Details: item["products"]["Details"],
-          Brand: item["brands"][0]["Name"],
-          Category: item["categories"][0]["Name"],
-          UnitCost: item["UnitCost"],
-          Total: item["Total"],
-          Date: moment(item["CreatedDate"]).format("MMMM Do YYYY"),
-        };
-        ReportData.push(listItem);
-      });
-      exportFromJSON({
-        data: ReportData,
-        fileName: fileName,
-        exportType: exportType,
-      });
+  const TextSearch = (e) => {
+    const rows = document.querySelectorAll("tbody tr");
+    rows.forEach((row) => {
+      row.style.display = row.innerText.includes(e.target.value) ? "" : "none";
+    });
+  };
+
+  const DeleteItem = async (id) => {
+    let Result = await DeleteAlert();
+    if (Result.isConfirmed) {
+      let DeleteResult = await DeleteSaleRequest(id);
+      if (DeleteResult) {
+        await SaleListRequest(1, perPage, searchKey);
+      }
     }
   };
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-12 mb-3">
-          <div className="card">
-            <div className="card-body">
-              <div className="row">
-                <h5>Sales Report by Date</h5>
-                <hr className="bg-light" />
-
-                <div className="col-4 p-2">
-                  <label className="form-label">Date Form:</label>
-                  <input
-                    name="formDate"
-                    value={date.formDate}
-                    onChange={handelChange}
-                    className="form-control form-control-sm"
-                    type="date"
-                  />
-                </div>
-                <div className="col-4 p-2">
-                  <label className="form-label">Date To:</label>
-                  <input
-                    name="toDate"
-                    value={date.toDate}
-                    onChange={handelChange}
-                    className="form-control form-control-sm"
-                    type="date"
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-4 p-2">
-                  <button
-                    onClick={CreateReport}
-                    className="btn btn-sm my-3 btn-success"
-                  >
-                    Create
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {DataList.length > 0 ? (
+    <>
+      <div className="container-fluid my-5">
+        <div className="row">
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <div className="row">
-                  <div className="col">
-                    <img
-                      src={dataFound}
-                      alt="Data found!"
-                      style={{ width: "500px" }}
-                    />
-                    <h6>
-                      Total:{" "}
-                      {DataList[0]["Total"].length > 0 ? (
-                        <CurrencyFormat
-                          value={DataList[0]["Total"][0]["TotalAmount"]}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={"$ "}
+                <div className="container-fluid">
+                  <div className="row">
+                    <div className="col-4">
+                      <h5>Sale List</h5>
+                    </div>
+
+                    <div className="col-2">
+                      <input
+                        onKeyUp={TextSearch}
+                        placeholder="Text Filter"
+                        className="form-control form-control-sm"
+                      />
+                    </div>
+
+                    <div className="col-2">
+                      <select
+                        onChange={perPageOnChange}
+                        className="form-control mx-2 form-select-sm form-select form-control-sm"
+                      >
+                        <option value="20">20 Per Page</option>
+                        <option value="30">30 Per Page</option>
+                        <option value="50">50 Per Page</option>
+                        <option value="100">100 Per Page</option>
+                        <option value="200">200 Per Page</option>
+                      </select>
+                    </div>
+                    <div className="col-4">
+                      <div className="input-group mb-3">
+                        <input
+                          onChange={searchKeywordOnChange}
+                          type="text"
+                          className="form-control form-control-sm"
+                          placeholder="Search.."
+                          aria-label="Recipient's username"
+                          aria-describedby="button-addon2"
                         />
-                      ) : (
-                        0
-                      )}{" "}
-                    </h6>
-                    <button
-                      onClick={() => OnExport("csv", DataList[0]["Rows"])}
-                      className="btn btn-sm my-2 btn-success"
-                    >
-                      Download CSV
-                    </button>
-                    <button
-                      onClick={() => OnExport("xls", DataList[0]["Rows"])}
-                      className="btn btn-sm my-2 ms-2 btn-success"
-                    >
-                      Download XLS
-                    </button>
+                        <button
+                          onClick={searchData}
+                          className="btn  btn-success btn-sm mb-0"
+                          type="button"
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="table-responsive table-section">
+                        <table className="table ">
+                          <thead className="sticky-top bg-white">
+                            <tr>
+                              <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                #No
+                              </td>
+                              <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Supplier
+                              </td>
+                              <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Grand Total
+                              </td>
+                              <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Shipping Cost
+                              </td>
+                              <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Vat/Tax
+                              </td>
+                              <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Other Cost
+                              </td>
+                              <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Discount
+                              </td>
+                              <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Date
+                              </td>
+                              <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Action
+                              </td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {DataList.map((item, i) => (
+                              <tr key={i.toString()}>
+                                <td>
+                                  <p className="text-xs text-start">{i + 1}</p>
+                                </td>
+                                <td>
+                                  <p className="text-xs text-start">
+                                  {item.customers[0]['CustomerName']}
+                                  </p>
+                                </td>
+                                <td>
+                                  <p className="text-xs text-start">
+                                    <CurrencyFormat
+                                      value={item.GrandTotal}
+                                      displayType={"text"}
+                                      thousandSeparator={true}
+                                      prefix={"$"}
+                                    />
+                                  </p>
+                                </td>
+                                <td>
+                                  <p className="text-xs text-start">
+                                    <CurrencyFormat
+                                      value={item.ShippingCost}
+                                      displayType={"text"}
+                                      thousandSeparator={true}
+                                      prefix={"$"}
+                                    />
+                                  </p>
+                                </td>
+                                <td>
+                                  <p className="text-xs text-start">
+                                    <CurrencyFormat
+                                      value={item.VatTax}
+                                      displayType={"text"}
+                                      thousandSeparator={true}
+                                      prefix={"$"}
+                                    />
+                                  </p>
+                                </td>
+                                <td>
+                                  <p className="text-xs text-start">
+                                    <CurrencyFormat
+                                      value={item.OtherCost}
+                                      displayType={"text"}
+                                      thousandSeparator={true}
+                                      prefix={"$"}
+                                    />
+                                  </p>
+                                </td>
+                                <td>
+                                  <p className="text-xs text-start">
+                                    <CurrencyFormat
+                                      value={item.Discount}
+                                      displayType={"text"}
+                                      thousandSeparator={true}
+                                      prefix={"$"}
+                                    />
+                                  </p>
+                                </td>
+                                <td>
+                                  <p className="text-xs text-start">
+                                    {moment(item.CreatedDate).format(
+                                      "MMMM Do YYYY"
+                                    )}
+                                  </p>
+                                </td>
+                                <td>
+                                  <Link
+                                    to={`/salesCreateUpdate?id=${item._id}`}
+                                    className="btn text-info btn-outline-light p-2 mb-0 btn-sm"
+                                  >
+                                    <AiOutlineEdit size={15} />
+                                  </Link>
+                                  <button
+                                    onClick={DeleteItem.bind(this, item._id)}
+                                    className="btn btn-outline-light text-danger p-2 mb-0 btn-sm ms-2"
+                                  >
+                                    <AiOutlineDelete size={15} />
+                                  </button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div className="col-12 mt-5">
+                      <nav aria-label="Page navigation example">
+                        <ReactPaginate
+                          previousLabel="<"
+                          nextLabel=">"
+                          pageClassName="page-item"
+                          pageLinkClassName="page-link"
+                          previousClassName="page-item"
+                          previousLinkClassName="page-link"
+                          nextClassName="page-item"
+                          nextLinkClassName="page-link"
+                          breakLabel="..."
+                          breakClassName="page-item"
+                          breakLinkClassName="page-link"
+                          pageCount={Math.ceil(Total / perPage)}
+                          marginPagesDisplayed={2}
+                          pageRangeDisplayed={5}
+                          onPageChange={handlePageClick}
+                          containerClassName="pagination"
+                          activeClassName="active"
+                        />
+                      </nav>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        ) : (
-          <div>
-            <img src={dataNot} alt="Data not found!" />
-          </div>
-        )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default SaleReport;
+export default SalesList;
