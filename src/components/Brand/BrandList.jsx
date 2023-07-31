@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import {
   BrandListRequest,
   DeleteBrandRequest,
-} from "../../APIRequest/BrandAPiRequest";
+} from "../../APIRequest/BrandApiRequest";
 import { DeleteAlert } from "../../helper/DeleteAlert";
 
 const BrandList = () => {
