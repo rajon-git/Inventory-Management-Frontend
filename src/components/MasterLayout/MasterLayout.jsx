@@ -12,15 +12,7 @@ import { TbTruckDelivery } from 'react-icons/tb';
 import { AiOutlineMenuUnfold } from 'react-icons/ai';
 import { IoIosAdd, IoIosAddCircle, IoIosAddCircleOutline } from 'react-icons/io';
 
-import {
-  BsBagPlus,
-  BsBagX,
-  BsBox,
-  BsCartPlus,
-  BsCircle,
-  BsGraphUp,
-  BsPeople,
-} from "react-icons/bs";
+import {BsBagPlus,BsBagX,BsBox,BsCartPlus,BsCircle,BsGraphUp,BsPeople,} from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/img/Logo.svg";
 import { getUserDetails, removeSession } from "../../helper/SessionHelper";

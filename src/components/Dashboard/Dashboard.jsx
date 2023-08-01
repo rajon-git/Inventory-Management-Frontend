@@ -52,12 +52,10 @@ const Dashboard = () => {
                 />
 
                 <div className="h4">
-                  
-                    value={ExpenseTotal}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  
+                 {ExpenseTotal.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  })}   
                   <h5>Total Expense</h5>
                 </div>
               </div>
@@ -70,12 +68,10 @@ const Dashboard = () => {
                   style={{ fontSize: "50px", color: "green",paddingRight: "10px" }}
                 />
                 <div className="h4">
-                  
-                    value={SaleTotal}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  
+                {SaleTotal.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  })}   
                 <h5>Total Sale</h5>
                 </div>
               </div>
@@ -88,12 +84,10 @@ const Dashboard = () => {
                   style={{ fontSize: "50px", color: "hotpink",paddingRight: "10px" }}
                 />
                 <div className="h4">
-                  
-                    value={PurchaseTotal}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  
+                  {PurchaseTotal.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  })}
                 <h5>Total Purchase</h5>
                 </div>
               </div>
@@ -106,12 +100,10 @@ const Dashboard = () => {
                   style={{ fontSize: "50px", color: "darkred", paddingRight: "10px" }}
                 />
                 <div className="h4">
-                  
-                    value={ReturnTotal}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                 
+                {ReturnTotal.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  })}
                 <h5>Total Return</h5>
                 </div>
               </div>
