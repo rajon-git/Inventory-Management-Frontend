@@ -110,7 +110,6 @@ const SaleReport = () => {
                       style={{ width: "500px" }}
                     />
                     <h6>
-                    
                       Total:{" "}
                       {DataList[0]["Total"].length > 0
                         ? `$ ${DataList[0]["Total"][0]["TotalAmount"]}`
@@ -118,7 +117,7 @@ const SaleReport = () => {
                   
                        : (
                         0
-                      )}{" "}
+                      ){" "}
                     </h6>
                     <button
                       onClick={() => OnExport("csv", DataList[0]["Rows"])}
