@@ -1,1 +1,1 @@
-export const BaseURL = "http://localhost:8000/api/v1";
+export const BaseURL = "https://inventory-managemnet-backend-rajon-git.onrender.com/api/v1";

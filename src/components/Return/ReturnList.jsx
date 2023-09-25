@@ -1,5 +1,6 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import CurrencyFormat from "react-currency-format";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
@@ -159,52 +160,52 @@ const ReturnList = () => {
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                   
+                                    <CurrencyFormat
                                       value={item.GrandTotal}
                                       displayType={"text"}
                                       thousandSeparator={true}
                                       prefix={"$"}
-                              
+                                    />
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                             
+                                    <CurrencyFormat
                                       value={item.ShippingCost}
                                       displayType={"text"}
                                       thousandSeparator={true}
                                       prefix={"$"}
-                                 
+                                    />
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                 
+                                    <CurrencyFormat
                                       value={item.VatTax}
                                       displayType={"text"}
                                       thousandSeparator={true}
                                       prefix={"$"}
-                              
+                                    />
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                               
+                                    <CurrencyFormat
                                       value={item.OtherCost}
                                       displayType={"text"}
                                       thousandSeparator={true}
                                       prefix={"$"}
-                            
+                                    />
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                          
+                                    <CurrencyFormat
                                       value={item.Discount}
                                       displayType={"text"}
                                       thousandSeparator={true}
                                       prefix={"$"}
-                           
+                                    />
                                   </p>
                                 </td>
                                 <td>

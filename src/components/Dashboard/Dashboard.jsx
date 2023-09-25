@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import CurrencyFormat from "react-currency-format";
 import { BsFillCalculatorFill,BsFillLayersFill,BsBoxes,BsFillCartCheckFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import {
@@ -52,10 +52,12 @@ const Dashboard = () => {
                 />
 
                 <div className="h4">
-                 {ExpenseTotal.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                  })}   
+                  <CurrencyFormat
+                    value={ExpenseTotal}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"$"}
+                  />
                   <h5>Total Expense</h5>
                 </div>
               </div>
@@ -68,10 +70,12 @@ const Dashboard = () => {
                   style={{ fontSize: "50px", color: "green",paddingRight: "10px" }}
                 />
                 <div className="h4">
-                {SaleTotal.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                  })}   
+                  <CurrencyFormat
+                    value={SaleTotal}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"$"}
+                  />
                 <h5>Total Sale</h5>
                 </div>
               </div>
@@ -84,10 +88,12 @@ const Dashboard = () => {
                   style={{ fontSize: "50px", color: "hotpink",paddingRight: "10px" }}
                 />
                 <div className="h4">
-                  {PurchaseTotal.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                  })}
+                  <CurrencyFormat
+                    value={PurchaseTotal}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"$"}
+                  />
                 <h5>Total Purchase</h5>
                 </div>
               </div>
@@ -100,10 +106,12 @@ const Dashboard = () => {
                   style={{ fontSize: "50px", color: "darkred", paddingRight: "10px" }}
                 />
                 <div className="h4">
-                {ReturnTotal.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                  })}
+                  <CurrencyFormat
+                    value={ReturnTotal}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"$"}
+                  />
                 <h5>Total Return</h5>
                 </div>
               </div>

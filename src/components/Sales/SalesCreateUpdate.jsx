@@ -8,7 +8,11 @@ import {
   ProductDropDownRequest,
 } from "../../APIRequest/SalesApiRequest";
 import { ErrorToast, IsEmpty } from "../../helper/FormHelper";
-import {OnChangeSaleInput,RemoveSaleItem,SetSaleItemList,} from "../../redux/slice/saleSlice";
+import {
+  OnChangeSaleInput,
+  RemoveSaleItem,
+  SetSaleItemList,
+} from "../../redux/slice/saleSlice";
 import store from "../../redux/store/store";
 
 const SalesCreateUpdate = () => {

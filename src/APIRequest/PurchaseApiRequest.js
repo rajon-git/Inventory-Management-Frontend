@@ -10,30 +10,7 @@ import { HideLoader, ShowLoader } from "../redux/slice/settingsSlice";
 import store from "../redux/store/store";
 const axiosConfig = { headers: { token: getToken() } };
 
-//create purchase 
-export async function CreatePurchaseRequest(Parent, Childe) {
-  try {
-    store.dispatch(ShowLoader());
-    let PostBody = { Parent, Childe };
-    let URL = `${BaseURL}/createPurchases`;
-
-    const result = await axios.post(URL, PostBody, axiosConfig);
-    store.dispatch(HideLoader());
-
-    if (result.status === 200 && result.data["status"] === "success") {
-      SuccessToast("Request Successful");
-      return true;
-    } else {
-      ErrorToast("Request Fail ! Try Again");
-      return false;
-    }
-  } catch (e) {
-    ErrorToast("Something Went Wrong");
-    store.dispatch(HideLoader());
-    return false;
-  }
-}
-// Purchase list
+// BrandListRequest
 export async function PurchaseListRequest(pageNo, perPage, searchKey) {
   try {
     store.dispatch(ShowLoader());
@@ -113,6 +90,28 @@ export async function ProductDropDownRequest() {
   }
 }
 
+export async function CreatePurchaseRequest(ParentBody, ChildBody) {
+  try {
+    store.dispatch(ShowLoader());
+    let PostBody = { Parent: ParentBody, Childe: ChildBody };
+    let URL = `${BaseURL}/createPurchases`;
+
+    const result = await axios.post(URL, PostBody, axiosConfig);
+    store.dispatch(HideLoader());
+
+    if (result.status === 200 && result.data["status"] === "success") {
+      SuccessToast("Request Successful");
+      return true;
+    } else {
+      ErrorToast("Request Fail ! Try Again");
+      return false;
+    }
+  } catch (e) {
+    ErrorToast("Something Went Wrong");
+    store.dispatch(HideLoader());
+    return false;
+  }
+}
 
 // DeleteReturnRequest
 export async function DeletePurchaseRequest(id) {
@@ -141,3 +140,4 @@ export async function DeletePurchaseRequest(id) {
     return false;
   }
 }
+

@@ -53,6 +53,8 @@ const Registration = () => {
       );
       if (result === true) {
         navigate("/login");
+      }else{
+        console.log("hello")
       }
     }
   };

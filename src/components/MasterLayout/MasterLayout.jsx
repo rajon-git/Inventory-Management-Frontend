@@ -5,14 +5,21 @@ import {
   AiOutlineLogout,
   AiOutlineMenu,
   AiOutlineUser,
+  AiOutlineUnorderedList,
+  AiOutlineMenuUnfold
 } from "react-icons/ai";
-import { AiOutlineUnorderedList } from 'react-icons/ai';
+import { IoCreateOutline } from 'react-icons/io5';
 import { RiDashboardLine } from 'react-icons/ri';
-import { TbTruckDelivery } from 'react-icons/tb';
-import { AiOutlineMenuUnfold } from 'react-icons/ai';
-import { IoIosAdd, IoIosAddCircle, IoIosAddCircleOutline } from 'react-icons/io';
-
-import {BsBagPlus,BsBagX,BsBox,BsCartPlus,BsCircle,BsGraphUp,BsPeople,} from "react-icons/bs";
+import { FaTruck } from "react-icons/fa";
+import {
+  BsBagPlus,
+  BsBagX,
+  BsBox,
+  BsCartPlus,
+  BsCircle,
+  BsGraphUp,
+  BsPeople,
+} from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/img/Logo.svg";
 import { getUserDetails, removeSession } from "../../helper/SessionHelper";
@@ -82,7 +89,7 @@ const MasterLayout = (props) => {
     },
     {
       title: "Supplier",
-      icon: <TbTruckDelivery className="side-bar-item-icon" />,
+      icon: <FaTruck className="side-bar-item-icon" />,
       url: "/Supplier",
       subMenu: [
         {
@@ -114,7 +121,7 @@ const MasterLayout = (props) => {
         },
         {
           title: "New Expense",
-          icon: <IoIosAdd  size={16} className="side-bar-subitem-icon" />,
+          icon: <IoCreateOutline size={16} className="side-bar-subitem-icon" />,
           url: "/expenseCreateUpdate",
         },
         {
@@ -275,17 +282,17 @@ const MasterLayout = (props) => {
             <div className="user-dropdown">
               <img
                 className="icon-nav-img icon-nav"
-                src={getUserDetails()["photo"]}
+                src={getUserDetails()?.photo || "default_photo_url.jpg"}
                 alt="logo"
               />
               <div className="user-dropdown-content ">
                 <div className="mt-4 text-center">
                   <img
                     className="icon-nav-img"
-                    src={getUserDetails()["photo"]}
+                    src={getUserDetails()?.photo || "default_photo_url.jpg"}
                     alt=""
                   />
-                  <h6>{getUserDetails()["firstName"]}</h6>
+                  <h6>{getUserDetails()?.["firstName"] || "name"}</h6>
                   <hr className="user-dropdown-divider  p-0" />
                 </div>
                 <NavLink to="/profile" className="side-bar-item">
