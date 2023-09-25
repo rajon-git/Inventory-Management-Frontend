@@ -5,6 +5,7 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {DeleteAlert} from "../../helper/DeleteAlert"
 import {
   DeleteSaleRequest,
   SaleListRequest,
