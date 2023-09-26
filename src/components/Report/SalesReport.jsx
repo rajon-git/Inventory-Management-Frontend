@@ -114,9 +114,9 @@ const SaleReport = () => {
                       {DataList[0]["Total"].length > 0
                         ? `$ ${DataList[0]["Total"][0]["TotalAmount"]}`
                         : "0"}{" "}
-                  
-                       : (
-                        0
+
+                      : (
+                      0
                       ){" "}
                     </h6>
                     <button

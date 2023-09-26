@@ -159,42 +159,42 @@ const ReturnList = () => {
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                  {item.GrandTotal.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  })}
+                                    {item.GrandTotal.toLocaleString("en-US", {
+                                      style: "currency",
+                                      currency: "USD",
+                                    })}
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                  {item.ShippingCost.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  })}
+                                    {item.ShippingCost.toLocaleString("en-US", {
+                                      style: "currency",
+                                      currency: "USD",
+                                    })}
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                  {item.VatTax.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  })}
+                                    {item.VatTax.toLocaleString("en-US", {
+                                      style: "currency",
+                                      currency: "USD",
+                                    })}
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                  {item.OtherCost.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  })}
+                                    {item.OtherCost.toLocaleString("en-US", {
+                                      style: "currency",
+                                      currency: "USD",
+                                    })}
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                  {item.Discount.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  })}
+                                    {item.Discount.toLocaleString("en-US", {
+                                      style: "currency",
+                                      currency: "USD",
+                                    })}
                                   </p>
                                 </td>
                                 <td>
