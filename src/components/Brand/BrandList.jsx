@@ -18,7 +18,7 @@ const BrandList = () => {
     (async () => {
       await BrandListRequest(1, perPage, searchKey);
     })();
-  }, []);
+  }, [perPage, searchKey]);
 
   let DataList = useSelector((state) => state.brand.List);
   let Total = useSelector((state) => state.brand.ListTotal);

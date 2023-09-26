@@ -82,7 +82,7 @@ const Profile = () => {
                   ref={(input) => (userImgView = input)}
                   className="icon-nav-img-lg"
                   src={ProfileData["photo"]}
-                  alt="photo"
+                  alt="inventory"
                 />
                 <hr />
                 <div className="row">

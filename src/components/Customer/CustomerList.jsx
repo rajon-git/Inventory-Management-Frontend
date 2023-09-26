@@ -18,7 +18,7 @@ const CustomerList = () => {
     (async () => {
       await CustomerListRequest(1, perPage, searchKey);
     })();
-  }, []);
+  }, [perPage, searchKey]);
 
   let DataList = useSelector((state) => state.customer.List);
   let Total = useSelector((state) => state.customer.ListTotal);

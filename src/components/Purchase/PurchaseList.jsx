@@ -18,7 +18,7 @@ const PurchaseList = () => {
     (async () => {
       await PurchaseListRequest(1, perPage, searchKey);
     })();
-  }, []);
+  }, [perPage, searchKey]);
 
   let DataList = useSelector((state) => state.purchase.List);
   let Total = useSelector((state) => state.purchase.ListTotal);

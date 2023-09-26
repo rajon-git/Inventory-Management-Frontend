@@ -17,7 +17,7 @@ const ExpenseList = () => {
     (async () => {
       await ExpenseListRequest(1, perPage, searchKey);
     })();
-  }, []);
+  }, [perPage, searchKey]);
 
   let DataList = useSelector((state) => state.expense.List);
   let Total = useSelector((state) => state.expense.ListTotal);

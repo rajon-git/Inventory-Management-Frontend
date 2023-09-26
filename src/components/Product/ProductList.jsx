@@ -14,7 +14,7 @@ const ProductList = () => {
     (async () => {
       await ProductListRequest(1, perPage, searchKey);
     })();
-  }, []);
+  }, [perPage, searchKey]);
 
   let DataList = useSelector((state) => state.product.List);
   let Total = useSelector((state) => state.product.ListTotal);

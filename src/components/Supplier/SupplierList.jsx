@@ -18,7 +18,7 @@ const SupplierList = () => {
     (async () => {
       await SupplierListRequest(1, perPage, searchKey);
     })();
-  }, []);
+  }, [perPage, searchKey]);
 
   let DataList = useSelector((state) => state.supplier.List);
   let Total = useSelector((state) => state.supplier.ListTotal);

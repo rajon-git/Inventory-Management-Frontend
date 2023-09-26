@@ -18,7 +18,7 @@ const CategoryList = () => {
     (async () => {
       await CategoryListRequest(1, perPage, searchKey);
     })();
-  }, []);
+  }, [perPage, searchKey]);
 
   let DataList = useSelector((state) => state.category.List);
   let Total = useSelector((state) => state.category.ListTotal);

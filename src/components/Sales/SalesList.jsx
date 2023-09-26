@@ -18,7 +18,7 @@ const SalesList = () => {
     (async () => {
       await SaleListRequest(1, perPage, searchKey);
     })();
-  }, []);
+  }, [perPage, searchKey]);
 
   let DataList = useSelector((state) => state.sale.List);
   let Total = useSelector((state) => state.sale.ListTotal);
