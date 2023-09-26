@@ -1,6 +1,5 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import CurrencyFormat from "react-currency-format";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
@@ -160,52 +159,42 @@ const SalesList = () => {
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                    <CurrencyFormat
-                                      value={item.GrandTotal}
-                                      displayType={"text"}
-                                      thousandSeparator={true}
-                                      prefix={"$"}
-                                    />
+                                  {item.GrandTotal.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  })}
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                    <CurrencyFormat
-                                      value={item.ShippingCost}
-                                      displayType={"text"}
-                                      thousandSeparator={true}
-                                      prefix={"$"}
-                                    />
+                                  {item.ShippingCost.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  })}
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                    <CurrencyFormat
-                                      value={item.VatTax}
-                                      displayType={"text"}
-                                      thousandSeparator={true}
-                                      prefix={"$"}
-                                    />
+                                  {item.VatTax.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  })}
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                    <CurrencyFormat
-                                      value={item.OtherCost}
-                                      displayType={"text"}
-                                      thousandSeparator={true}
-                                      prefix={"$"}
-                                    />
+                                  {item.OtherCost.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  })}
                                   </p>
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                    <CurrencyFormat
-                                      value={item.Discount}
-                                      displayType={"text"}
-                                      thousandSeparator={true}
-                                      prefix={"$"}
-                                    />
+                                  {item.Discount.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  })}
                                   </p>
                                 </td>
                                 <td>

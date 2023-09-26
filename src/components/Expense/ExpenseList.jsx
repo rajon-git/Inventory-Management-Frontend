@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import CurrencyFormat from "react-currency-format";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
@@ -147,12 +146,10 @@ const ExpenseList = () => {
                                 </td>
                                 <td>
                                   <p className="text-xs text-start">
-                                    <CurrencyFormat
-                                      value={item.Amount}
-                                      displayType={"text"}
-                                      thousandSeparator={true}
-                                      prefix={"$"}
-                                    />
+                                  {item.Amount.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  })}
                                   </p>
                                 </td>
                                 <td>

@@ -1,7 +1,6 @@
 import exportFromJSON from "export-from-json";
 import moment from "moment";
 import React, { useState } from "react";
-import CurrencyFormat from "react-currency-format";
 import { useSelector } from "react-redux";
 import { ReturnByDateRequest } from "../../APIRequest/ReportApiRequest";
 import dataFound from "../../assets/img/dat.png";
@@ -110,19 +109,13 @@ const ReturnReport = () => {
                       alt="Data found!"
                       style={{ width: "500px" }}
                     />
-                    <h6>
-                      Total:{" "}
-                      {DataList[0]["Total"].length > 0 ? (
-                        <CurrencyFormat
-                          value={DataList[0]["Total"][0]["TotalAmount"]}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                          prefix={"$ "}
-                        />
-                      ) : (
-                        0
-                      )}{" "}
-                    </h6>
+                   <h6>
+  Total:{" "}
+  {DataList[0]["Total"].length > 0
+    ? `$ ${DataList[0]["Total"][0]["TotalAmount"].toLocaleString("en-US")}`
+    : "0"}
+</h6>
+
                     <button
                       onClick={() => OnExport("csv", DataList[0]["Rows"])}
                       className="btn btn-sm my-2 btn-success"
