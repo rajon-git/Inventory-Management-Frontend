@@ -1,12 +1,12 @@
 import axios from "axios";
 import { ErrorToast } from "../helper/FormHelper";
 import { getToken } from "../helper/SessionHelper";
-import { BaseURL } from "../helper/config";
+// import { BaseURL } from "../helper/config";
 import { SetExpensesByDateList, SetPurchaseByDateList, SetReturnByDateList, SetSalesByDateList } from "../redux/slice/reportSlice";
 import { HideLoader, ShowLoader } from "../redux/slice/settingsSlice";
 import store from "../redux/store/store";
 const axiosConfig = { headers: { token: getToken() } };
-
+const BaseURL = "https://inventory-managemnet-backend-rajon-git.onrender.com/api/v1";
 export async function ExpensesByDateRequest(FormData, ToDate) {
   try {
     store.dispatch(ShowLoader());

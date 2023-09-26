@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ErrorToast, SuccessToast } from "../helper/FormHelper";
 import { getToken } from "../helper/SessionHelper";
-import { BaseURL } from "../helper/config";
+// import { BaseURL } from "../helper/config";
 import {
   ResetFormValue,
   SetCustomerList,
@@ -11,7 +11,7 @@ import {
 import { HideLoader, ShowLoader } from "../redux/slice/settingsSlice";
 import store from "../redux/store/store";
 const axiosConfig = { headers: { token: getToken() } };
-
+const BaseURL = "https://inventory-managemnet-backend-rajon-git.onrender.com/api/v1";
 // BrandListRequest
 export async function CustomerListRequest(pageNo, perPage, searchKey) {
   try {

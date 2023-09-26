@@ -7,12 +7,12 @@ import {
   setToken,
   setUserDetails,
 } from "../helper/SessionHelper";
-import { BaseURL } from "../helper/config";
+// import { BaseURL } from "../helper/config";
 import { SetProfile } from "../redux/slice/profileSlice";
 import { HideLoader, ShowLoader } from "../redux/slice/settingsSlice";
 import store from "../redux/store/store";
 const axiosConfig = { headers: { token: getToken() } };
-
+const BaseURL = "https://inventory-managemnet-backend-rajon-git.onrender.com/api/v1";
 // Registration Request
 export async function RegistrationRequest(
   UserEmail,

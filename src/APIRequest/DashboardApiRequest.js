@@ -2,7 +2,7 @@ import axios from "axios";
 import { HideLoader, ShowLoader } from "../redux/slice/settingsSlice";
 import { getToken } from "../helper/SessionHelper";
 import store from "../redux/store/store";
-import { BaseURL } from "../helper/config";
+// import { BaseURL } from "../helper/config";
 import {
   SetExpenseChart,
   SetExpenseTotal,
@@ -15,7 +15,7 @@ import {
 } from "../redux/slice/dashboardSlice";
 import { ErrorToast } from "../helper/FormHelper";
 const axiosConfig = { headers: { token: getToken() } };
-
+const BaseURL = "https://inventory-managemnet-backend-rajon-git.onrender.com/api/v1";
 export async function ExpensesSummary() {
   try {
     store.dispatch(ShowLoader());
