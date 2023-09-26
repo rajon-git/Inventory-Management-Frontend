@@ -18,7 +18,7 @@ const ReturnList = () => {
     (async () => {
       await ReturnListRequest(1, perPage, searchKey);
     })();
-  }, []);
+  }, [perPage, searchKey]);
 
   let DataList = useSelector((state) => state.return.List);
   let Total = useSelector((state) => state.return.ListTotal);

@@ -3,7 +3,6 @@ import { Accordion, Container, Navbar } from "react-bootstrap";
 import {
   AiOutlineBank,
   AiOutlineLogout,
-  AiOutlineMenu,
   AiOutlineUser,
   AiOutlineUnorderedList,
   AiOutlineMenuUnfold
